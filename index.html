@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improvised Canon</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.4.9/Tone.min.js"></script>
+    <script src="/Tonejs-Instruments.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Randomly Generated Reinassance Canon</h1>
+
+        <div id="app" class="d-flex flex-column justify-content-start flex-sm-row mr-3 mr-md-0">
+
+            <div class="instruments d-flex flex-column mr-sm-3">
+
+                <div class="input-group m-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="instrument1">First Voice</label>
+                    </div>
+                    <select class="custom-select" id="instrument1" onchange="loadInstruments()">
+                        <option value="bassoon">Bassoon</option>
+                        <option value="clarinet" selected="selected">Clarinet</option>
+                        <option value="flute">Flute</option>
+                        <option value="french-horn">French Horn</option>
+                        <option value="harmonium">Harmonium</option>
+                        <option value="organ">Organ</option>
+                        <option value="trumpet">Trumpet</option>
+                    </select>
+                </div>
+
+                <div class="input-group m-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="instrument2">Second Voice</label>
+                    </div>
+                    <select class="custom-select" id="instrument2" onchange="loadInstruments()">
+                        <option value="bassoon" selected="selected">Bassoon</option>
+                        <option value="clarinet">Clarinet</option>
+                        <option value="flute">Flute</option>
+                        <option value="french-horn">French Horn</option>
+                        <option value="harmonium">Harmonium</option>
+                        <option value="organ">Organ</option>
+                        <option value="trumpet">Trumpet</option>
+                    </select>
+                </div>
+
+                <div class="input-group m-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="instrument3">Third Voice</label>
+                    </div>
+                    <select class="custom-select" id="instrument3" onchange="loadInstruments()">
+                        <option value="bassoon">Bassoon</option>
+                        <option value="clarinet">Clarinet</option>
+                        <option value="flute" selected="selected">Flute</option>
+                        <option value="french-horn">French Horn</option>
+                        <option value="harmonium">Harmonium</option>
+                        <option value="organ">Organ</option>
+                        <option value="trumpet">Trumpet</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="tempo-measures d-flex flex-column ml-sm-3 align-items-start">
+
+                <div class="input-group m-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="tempo">Tempo</label>
+                    </div>
+                    <select class="custom-select" id="tempo" onchange="changeTempo()">
+                        <option value="60">60</option>
+                        <option value="120" selected="selected">120</option>
+                        <option value="180">180</option>
+                        <option value="240">240</option>
+                    </select>
+                    <div class="input-group-append">
+                        <label class="input-group-text" for="tempo">bpm</label>
+                    </div>
+                </div>
+
+                <div class="input-group m-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="measures">Measures</label>
+                    </div>
+                    <select class="custom-select" id="measures" onchange="changeMeasures()">
+                        <option value="4m">4</option>
+                    <option value="8m" selected="selected">8</option>
+                    <option value="16m">16</option>
+                    <option value="32m">32</option>
+                    </select>
+                </div>
+
+                <button id="play" onclick="start()" disabled="true" class="btn btn-primary m-3">Play</button>
+
+            </div>
+
+        </div>
+
+
+        <p>This simple web app generates a Renaissance-like melody that is imitated by a second voice a 5th below, which is then imitated by a third voice an octave above. </p>
+
+        <p>The inspiration for this came when I came across Peter Schubert's videos on this topic. Basically, in order for this to work, the melody may start at any point of the scale, but every time you will move to the next note you only have a few choices.
+            In this case, since we have 2 additional voices, we may only move down a 5th, down a 3rd, stay on the same note, or go up a 4th, and we may only repeat the same note up to 2 times. </p>
+
+
+        <div class="embed-responsive embed-responsive-16by9 my-3">
+            <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/eu_-OfAABHw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <h3>Possible Future Work:</h3>
+        <ul>
+            <li>
+                Displaying the score of the melody generated.
+            </li>
+            <li>
+                Ability to choose which voices starts and which voice imitates who. For example, instead of a middle voiced followed by a voice a 5th below that one being followed by a voice an octave above, having the high voice start, followed by one an octave below
+                and that one followed by one a 5th above.
+            </li>
+            <li>
+                Having all voices end at the same time before the cadence.
+            </li>
+            <li>
+                Better system for the cadence. Right now, the cadence is not part of the ammount of measures you are selecting. These only determine how many measures will be generated, and the cadence is added on top of that.
+            </li>
+            <li>
+                Looking into letting the user pick the type of cadence.
+            </li>
+        </ul>
+
+        <h3>References, inspirations, and other resources:</h3>
+        <ul>
+            <li><a href="">Github repository</a></li>
+            <li><a href="https://github.com/Tonejs/Tone.js">Tone.js</a></li>
+            <li><a href="https://github.com/nbrosowsky/tonejs-instruments">tone-js-instruments</a></li>
+            <li><a href="http://compform.net/music/">Tutorial on Tone.js and generative music</a></li>
+            <li><a href="https://mtosmt.org/issues/mto.13.19.2/mto.13.19.2.cumming.php">Nice summary of Reinassance Imporvisation</a></li>
+        </ul>
+
+    </div>
+
+
+    <script src="/script.js"></script>
+</body>
+
+</html>

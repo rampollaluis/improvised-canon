@@ -1,0 +1,4 @@
+# filetype of samples I never had to use
+*.wav
+
+.DS_Store
