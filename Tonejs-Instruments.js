@@ -8,7 +8,7 @@
 var SampleLibrary = {
     minify: false,
     ext: '.[mp3|ogg]', // use setExt to change the extensions on all files // do not change this variable //
-    baseUrl: '/samples/',
+    baseUrl: 'samples/',
     list: ['bassoon', 'clarinet', 'flute', 'french-horn', 'harmonium', 'organ', 'piano', 'trumpet'],
     onload: null,
 
