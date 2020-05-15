@@ -18,12 +18,10 @@ Tone.Buffer.on('load', function() {
 });
 
 // mobile fix
-document.getElementById("play").addEventListener("click", function() {
-    if (Tone.context.state !== 'running') {
-        Tone.context.resume();
-    }
-    start();
-});
+//pass in the audio context
+var context = new AudioContext();
+//on iOS, the context will be started on the first valid user action on the #playButton element
+StartAudioContext(context, "#play");
 
 async function start() {
     const melody = generate();
