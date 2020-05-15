@@ -22,6 +22,7 @@ document.getElementById("play").addEventListener("click", function() {
     if (Tone.context.state !== 'running') {
         Tone.context.resume();
     }
+    start();
 });
 
 async function start() {
