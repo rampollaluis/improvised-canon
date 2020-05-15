@@ -17,6 +17,16 @@ Tone.Buffer.on('load', function() {
     document.getElementById("play").innerText = "Play";
 });
 
+// mobile fix
+document.documentElement.addEventListener(
+    "mousedown",
+    function() {
+        mouse_IsDown = true;
+        if (Tone.context.state !== 'running') {
+            Tone.context.resume();
+        }
+    })
+
 async function start() {
     const melody = generate();
     const secondMelody = imitate(melody, 1);
