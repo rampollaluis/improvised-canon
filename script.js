@@ -17,22 +17,24 @@ Tone.Buffer.on('load', function() {
     document.getElementById("play").innerText = "Play";
 });
 
-async function start() {
-    // mobile fix
+// mobile fix
+document.getElementById("play").addEventListener("click", function() {
     if (Tone.context.state !== 'running') {
         Tone.context.resume();
     }
+});
 
+async function start() {
     const melody = generate();
     const secondMelody = imitate(melody, 1);
     const thirdMelody = imitate(secondMelody, 2);
 
-    // melody.map(function(note) {
-    //     console.log("1: " + note[0] + " " + note[1].toNotation() +
-    //         " 2: " + secondMelody[melody.indexOf(note)][0] + " " + secondMelody[melody.indexOf(note)][1].toNotation() +
-    //         " 3: " + thirdMelody[melody.indexOf(note)][0] + " " + thirdMelody[melody.indexOf(note)][1].toNotation());
+    melody.map(function(note) {
+        console.log("1: " + note[0] + " " + note[1].toNotation() +
+            " 2: " + secondMelody[melody.indexOf(note)][0] + " " + secondMelody[melody.indexOf(note)][1].toNotation() +
+            " 3: " + thirdMelody[melody.indexOf(note)][0] + " " + thirdMelody[melody.indexOf(note)][1].toNotation());
 
-    // })
+    })
 
     play(melody, voice1);
     play(secondMelody, voice2);
